@@ -14,18 +14,21 @@ struct OrderBookView: View {
         UITableView.appearance().separatorStyle = .none
     }
     
-    let data = (0..<50).map {
-        OrderBook(
-            id: $0,
-            ask: (BANumber.random(in: 0.1..<3), BANumber.random(in: 9000..<9999)),
-            bid: (BANumber.random(in: 0.1..<3), BANumber.random(in: 9000..<9999)))
-    }
+    @State var data: [OrderBook] = (0..<50).map { mockOrder($0) }
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    private func updateData() {
+        data = data[10...].map {
+            mockOrder($0.id-10, ask: $0.ask, bid: $0.bid) }
+            + (40..<50).map { mockOrder($0) }
+     }
     
     var body: some View {
         List(data) { v in
             OrderBookCellView(bid: v.bid, ask: v.ask)
                 .padding(.vertical, -6)
+        }.onReceive(timer) { input in
+            self.updateData()
         }
         .environment(\.defaultMinListRowHeight, 30)
     }

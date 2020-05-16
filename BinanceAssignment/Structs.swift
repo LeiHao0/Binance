@@ -20,3 +20,10 @@ struct OrderBook: Identifiable {
     var ask: (BANumber, BANumber)
     var bid: (BANumber, BANumber)
 }
+
+func mockOrder(_ id: Int, ask: (BANumber, BANumber)? = nil, bid: (BANumber, BANumber)? = nil) -> OrderBook {
+     OrderBook(
+     id: id,
+     ask: ask ?? (BANumber.random(in: 0.1..<3), BANumber.random(in: 9000..<9999)),
+     bid: bid ?? (BANumber.random(in: 0.1..<3), BANumber.random(in: 9000..<9999)))
+ }
