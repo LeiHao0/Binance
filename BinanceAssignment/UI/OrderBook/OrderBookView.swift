@@ -9,13 +9,16 @@
 import SwiftUI
 
 struct OrderBookView: View {
+    static let every: TimeInterval = 10
     init() {
         UITableView.appearance().tableFooterView = UIView()
         UITableView.appearance().separatorStyle = .none
+        
+        StreamManager.shared
     }
     
     @State var data: [OrderBook] = (0..<50).map { mockOrder($0) }
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: every, on: .main, in: .common).autoconnect()
     
     private func updateData() {
         data = data[10...].map {
