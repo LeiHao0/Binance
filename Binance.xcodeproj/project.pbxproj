@@ -33,7 +33,7 @@
 		6E192328246EA68E00D2237C /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		6E255111246FC63E00AD58A5 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		6E255113246FC88600AD58A5 /* OrderBookComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookComponents.swift; sourceTree = "<group>"; };
-		6E4EE32C246D9DE8006859BF /* BinanceAssignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceAssignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E4EE32C246D9DE8006859BF /* Binance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Binance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E4EE32F246D9DE8006859BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E4EE331246D9DE8006859BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6E4EE333246D9DE8006859BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		6E4EE323246D9DE8006859BF = {
 			isa = PBXGroup;
 			children = (
-				6E4EE32E246D9DE8006859BF /* BinanceAssignment */,
+				6E4EE32E246D9DE8006859BF /* Binance */,
 				6E4EE32D246D9DE8006859BF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,12 +81,12 @@
 		6E4EE32D246D9DE8006859BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6E4EE32C246D9DE8006859BF /* BinanceAssignment.app */,
+				6E4EE32C246D9DE8006859BF /* Binance.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6E4EE32E246D9DE8006859BF /* BinanceAssignment */ = {
+		6E4EE32E246D9DE8006859BF /* Binance */ = {
 			isa = PBXGroup;
 			children = (
 				6E4EE32F246D9DE8006859BF /* AppDelegate.swift */,
@@ -98,7 +98,7 @@
 				6E4EE33D246D9DEB006859BF /* Info.plist */,
 				6E4EE337246D9DEB006859BF /* Preview Content */,
 			);
-			path = BinanceAssignment;
+			path = Binance;
 			sourceTree = "<group>";
 		};
 		6E4EE337246D9DEB006859BF /* Preview Content */ = {
@@ -140,9 +140,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6E4EE32B246D9DE8006859BF /* BinanceAssignment */ = {
+		6E4EE32B246D9DE8006859BF /* Binance */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6E4EE340246D9DEB006859BF /* Build configuration list for PBXNativeTarget "BinanceAssignment" */;
+			buildConfigurationList = 6E4EE340246D9DEB006859BF /* Build configuration list for PBXNativeTarget "Binance" */;
 			buildPhases = (
 				6E4EE328246D9DE8006859BF /* Sources */,
 				6E4EE329246D9DE8006859BF /* Frameworks */,
@@ -152,14 +152,14 @@
 			);
 			dependencies = (
 			);
-			name = BinanceAssignment;
+			name = Binance;
 			packageProductDependencies = (
 				6E9807052470479300716956 /* Starscream */,
 				6E6876832471620700D090BE /* Alamofire */,
 				6E6876862471622B00D090BE /* SwiftyJSON */,
 			);
-			productName = BinanceAssignment;
-			productReference = 6E4EE32C246D9DE8006859BF /* BinanceAssignment.app */;
+			productName = Binance;
+			productReference = 6E4EE32C246D9DE8006859BF /* Binance.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -177,7 +177,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6E4EE327246D9DE8006859BF /* Build configuration list for PBXProject "BinanceAssignment" */;
+			buildConfigurationList = 6E4EE327246D9DE8006859BF /* Build configuration list for PBXProject "Binance" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -195,7 +195,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6E4EE32B246D9DE8006859BF /* BinanceAssignment */,
+				6E4EE32B246D9DE8006859BF /* Binance */,
 			);
 		};
 /* End PBXProject section */
@@ -365,15 +365,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"BinanceAssignment/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Binance/Preview Content\"";
 				DEVELOPMENT_TEAM = NN6QF27A8R;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = BinanceAssignment/Info.plist;
+				INFOPLIST_FILE = Binance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.leihao.BinanceAssignment;
+				PRODUCT_BUNDLE_IDENTIFIER = io.leihao.Binance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -385,15 +385,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"BinanceAssignment/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Binance/Preview Content\"";
 				DEVELOPMENT_TEAM = NN6QF27A8R;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = BinanceAssignment/Info.plist;
+				INFOPLIST_FILE = Binance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.leihao.BinanceAssignment;
+				PRODUCT_BUNDLE_IDENTIFIER = io.leihao.Binance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -403,7 +403,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6E4EE327246D9DE8006859BF /* Build configuration list for PBXProject "BinanceAssignment" */ = {
+		6E4EE327246D9DE8006859BF /* Build configuration list for PBXProject "Binance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6E4EE33E246D9DEB006859BF /* Debug */,
@@ -412,7 +412,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6E4EE340246D9DEB006859BF /* Build configuration list for PBXNativeTarget "BinanceAssignment" */ = {
+		6E4EE340246D9DEB006859BF /* Build configuration list for PBXNativeTarget "Binance" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6E4EE341246D9DEB006859BF /* Debug */,

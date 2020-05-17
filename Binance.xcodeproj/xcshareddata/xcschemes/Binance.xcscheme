@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6E4EE32B246D9DE8006859BF"
-               BuildableName = "BinanceAssignment.app"
-               BlueprintName = "BinanceAssignment"
-               ReferencedContainer = "container:BinanceAssignment.xcodeproj">
+               BuildableName = "Binance.app"
+               BlueprintName = "Binance"
+               ReferencedContainer = "container:Binance.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E4EE32B246D9DE8006859BF"
-            BuildableName = "BinanceAssignment.app"
-            BlueprintName = "BinanceAssignment"
-            ReferencedContainer = "container:BinanceAssignment.xcodeproj">
+            BuildableName = "Binance.app"
+            BlueprintName = "Binance"
+            ReferencedContainer = "container:Binance.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E4EE32B246D9DE8006859BF"
-            BuildableName = "BinanceAssignment.app"
-            BlueprintName = "BinanceAssignment"
-            ReferencedContainer = "container:BinanceAssignment.xcodeproj">
+            BuildableName = "Binance.app"
+            BlueprintName = "Binance"
+            ReferencedContainer = "container:Binance.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

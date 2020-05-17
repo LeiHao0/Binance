@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  BinanceAssignment
+//  Binance
 //
 //  Created by LH on 5/14/20.
 //  Copyright © 2020 LH. All rights reserved.

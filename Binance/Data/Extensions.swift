@@ -1,6 +1,6 @@
 //
 //  Extensions.swift
-//  BinanceAssignment
+//  Binance
 //
 //  Created by LH on 5/16/20.
 //  Copyright © 2020 LH. All rights reserved.
