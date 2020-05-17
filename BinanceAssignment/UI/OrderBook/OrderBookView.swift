@@ -14,7 +14,7 @@ struct OrderBookView: View {
         UITableView.appearance().tableFooterView = UIView()
         UITableView.appearance().separatorStyle = .none
         
-        StreamManager.shared
+        StreamManager.shared.start()
     }
     
     @State var data: [OrderBook] = (0..<50).map { mockOrder($0) }

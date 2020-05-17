@@ -19,6 +19,8 @@
 		6E4EE336246D9DEB006859BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E4EE335246D9DEB006859BF /* Assets.xcassets */; };
 		6E4EE339246D9DEB006859BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E4EE338246D9DEB006859BF /* Preview Assets.xcassets */; };
 		6E4EE33C246D9DEB006859BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E4EE33A246D9DEB006859BF /* LaunchScreen.storyboard */; };
+		6E6876842471620700D090BE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6E6876832471620700D090BE /* Alamofire */; };
+		6E6876872471622B00D090BE /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 6E6876862471622B00D090BE /* SwiftyJSON */; };
 		6E8C42BB246F9DB80072EC5A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8C42BA246F9DB80072EC5A /* Extensions.swift */; };
 		6E9807062470479300716956 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 6E9807052470479300716956 /* Starscream */; };
 		6E980708247047CA00716956 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E980707247047CA00716956 /* StreamManager.swift */; };
@@ -48,7 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E6876872471622B00D090BE /* SwiftyJSON in Frameworks */,
 				6E9807062470479300716956 /* Starscream in Frameworks */,
+				6E6876842471620700D090BE /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +155,8 @@
 			name = BinanceAssignment;
 			packageProductDependencies = (
 				6E9807052470479300716956 /* Starscream */,
+				6E6876832471620700D090BE /* Alamofire */,
+				6E6876862471622B00D090BE /* SwiftyJSON */,
 			);
 			productName = BinanceAssignment;
 			productReference = 6E4EE32C246D9DE8006859BF /* BinanceAssignment.app */;
@@ -182,6 +188,8 @@
 			mainGroup = 6E4EE323246D9DE8006859BF;
 			packageReferences = (
 				6E9807042470479300716956 /* XCRemoteSwiftPackageReference "Starscream" */,
+				6E6876822471620700D090BE /* XCRemoteSwiftPackageReference "Alamofire" */,
+				6E6876852471622B00D090BE /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 6E4EE32D246D9DE8006859BF /* Products */;
 			projectDirPath = "";
@@ -416,6 +424,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6E6876822471620700D090BE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+		6E6876852471622B00D090BE /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		6E9807042470479300716956 /* XCRemoteSwiftPackageReference "Starscream" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/daltoniam/Starscream.git";
@@ -427,6 +451,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6E6876832471620700D090BE /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E6876822471620700D090BE /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		6E6876862471622B00D090BE /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E6876852471622B00D090BE /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
 		6E9807052470479300716956 /* Starscream */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6E9807042470479300716956 /* XCRemoteSwiftPackageReference "Starscream" */;
