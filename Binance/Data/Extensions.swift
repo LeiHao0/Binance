@@ -27,3 +27,11 @@ extension BANumber {
         return s ?? ""
     }
 }
+
+func print(_ items: Any...) {
+    #if DEBUG
+    items.forEach {
+        Swift.print($0, separator: " ", terminator: "\n")
+    }
+    #endif
+}

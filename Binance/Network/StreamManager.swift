@@ -19,13 +19,13 @@ class StreamManager {
     }
     
     private let socket: WebSocket
-    private let streamWss = "wss://stream.binance.com:9443/ws/bnbbtc@depth"
-    private let depthSnapshot = "https://www.binance.com/api/v1/depth?symbol=BNBBTC&limit=1000"
+    private let streamWss = "wss://stream.binance.com:9443/ws/btcusdt@depth"
+    private let depthSnapshot = "https://www.binance.com/api/v1/depth?symbol=BTCUSDT&limit=1000"
     private var isConnected = false
     private var lastUpdateId = 0
     private init() {
         var request = URLRequest(url: URL(string: streamWss)!)
-        request.timeoutInterval = 5
+        request.timeoutInterval = 10
         socket = WebSocket(request: request)
         socket.delegate = self
     }
@@ -42,12 +42,10 @@ class StreamManager {
                 print(error)
             }
         }
-        
-//        socket.connect()
     }
     
     public func stop() {
-        
+        socket.disconnect()
     }
     
     
@@ -74,6 +72,7 @@ extension StreamManager: WebSocketDelegate {
         case .binary(let data):
             print("Received data: \(data.count)")
         case .ping(_):
+            // Starscream will automatically respond to incoming ping control frames so you do not need to manually send pongs.
             break
         case .pong(_):
             break

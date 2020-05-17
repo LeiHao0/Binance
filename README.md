@@ -16,7 +16,8 @@
   - [x] Order Book
   - [ ] Market History
 - [ ] Refresh
-- [ ] 8 scales
+- [ ] 1-8 Scales
+- [x] Ping&Pong
 
 ### Advanced requirements
 
