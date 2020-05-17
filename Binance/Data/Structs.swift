@@ -7,6 +7,12 @@
 //
 
 import Foundation
+import SwiftyJSON
+
+
+enum BBType: String {
+    case btcusdt, bnbbtc
+}
 
 enum OrderType {
     case bid, ask
@@ -17,7 +23,7 @@ typealias BANumber = Double
 
 struct OrderBook: Identifiable {
     var id: Int
-    var ask: (BANumber, BANumber)
+    var ask: (BANumber, BANumber) // (Price, Quantity)
     var bid: (BANumber, BANumber)
 }
 
@@ -26,8 +32,8 @@ struct StreamPack: Codable {
     let E: Int
     let u, U: Int
     let s: String
-    let b: [[String]]
-    let a: [[String]]
+    var b: [[String]]
+    var a: [[String]]
 }
 
 /// ---

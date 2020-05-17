@@ -11,22 +11,22 @@ import Starscream
 import SwiftyJSON
 import Alamofire
 
+
+let bbType = BBType.bnbbtc
+
 class StreamManager {
     public static let shared = StreamManager()
     
-    public func connect() {
-        
-    }
-    
     private let socket: WebSocket
-    private let streamWss = "wss://stream.binance.com:9443/ws/btcusdt@depth"
-    private let depthSnapshot = "https://www.binance.com/api/v1/depth?symbol=BTCUSDT&limit=1000"
+    private let streamWss = "wss://stream.binance.com:9443/ws/\(bbType.rawValue)@depth"
+    private let depthSnapshot = "https://www.binance.com/api/v1/depth?symbol=\(bbType.rawValue.uppercased())&limit=1000"
     private var isConnected = false
     private var lastUpdateId = 0
     private init() {
         var request = URLRequest(url: URL(string: streamWss)!)
         request.timeoutInterval = 10
         socket = WebSocket(request: request)
+        socket.callbackQueue = DispatchQueue(label: "io.leihao.Binance")
         socket.delegate = self
     }
     
@@ -62,13 +62,7 @@ extension StreamManager: WebSocketDelegate {
             print("websocket is disconnected: \(reason) with code: \(code)")
         case .text(let string):
 //            print("Received text: \(string)")
-            if let sp = try? JSONDecoder().decode(StreamPack.self, from: Data(string.utf8)) {
-                if sp.u > self.lastUpdateId {
-                    print("Received StreamPack:", sp)
-                } else {
-                    print("Received StreamPack: Drop u(\(sp.u)) <= lastUpdateId(\(lastUpdateId) in the snapshot.")
-                }
-            }
+            filterData(string)
         case .binary(let data):
             print("Received data: \(data.count)")
         case .ping(_):
@@ -90,6 +84,26 @@ extension StreamManager: WebSocketDelegate {
     
     private func handleError(_ e: Error?) {
         print(e ?? "")
+    }
+    
+    private func filterData(_ string: String) {
+        
+        guard var sp = try? JSONDecoder().decode(StreamPack.self, from: Data(string.utf8)) else {
+            print("Received text toJson failed: ", string)
+            return
+        }
+        guard sp.u > self.lastUpdateId else {
+            print("Received StreamPack: Drop u(\(sp.u)) <= lastUpdateId(\(lastUpdateId) in the snapshot.")
+            return
+        }
+        
+        
+        sp.a = sp.a.filter { BANumber($0[1]) != 0 }
+        sp.b = sp.b.filter { BANumber($0[1]) != 0 }
+        
+        print("Received StreamPack:", sp)
+        
+        
     }
     
 }
