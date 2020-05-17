@@ -30,6 +30,7 @@ class StreamManager {
         socket.delegate = self
     }
     
+    private var isFirstEvent = true
     public func start() {
         AF.request(depthSnapshot, method: .get).validate().responseJSON { [weak self] response in
             switch response.result {
@@ -46,8 +47,27 @@ class StreamManager {
     
     public func stop() {
         socket.disconnect()
+        clearBuffer()
+        isFirstEvent = true
     }
     
+    public func restart() {
+        stop()
+        start()
+    }
+    
+    
+    private let streamPacksBufferSize = 3
+    private var streamPacksBuffer = [StreamPack]()
+    private func clearBuffer() {
+        streamPacksBuffer = []
+    }
+    private func append(_ sp : StreamPack) {
+        if streamPacksBuffer.count > streamPacksBufferSize {
+            streamPacksBuffer.remove(at: 0)
+        }
+        streamPacksBuffer.append(sp)
+    }
     
 }
 
@@ -87,23 +107,45 @@ extension StreamManager: WebSocketDelegate {
     }
     
     private func filterData(_ string: String) {
-        
         guard var sp = try? JSONDecoder().decode(StreamPack.self, from: Data(string.utf8)) else {
             print("Received text toJson failed: ", string)
             return
         }
+        // 4. Drop any event where `u` is <= `lastUpdateId` in the snapshot.
         guard sp.u > self.lastUpdateId else {
-            print("Received StreamPack: Drop u(\(sp.u)) <= lastUpdateId(\(lastUpdateId) in the snapshot.")
+            print("Received StreamPack: Drop u:\(sp.u) <= lastUpdateId:\(lastUpdateId) ")
             return
         }
         
+        // 5. The first processed event should have `U` <= `lastUpdateId`+1 **AND** `u` >= `lastUpdateId`+1.
+        if isFirstEvent {
+            if sp.U < lastUpdateId && sp.u > self.lastUpdateId {
+                isFirstEvent = false
+                append(sp)
+            } else {
+                print("Received StreamPack: Drop lastUpdateId:\(lastUpdateId) not in range U:\(sp.U)...u:\(sp.u)")
+                restart()
+                return
+            }
+        } else {
+            // 6. While listening to the stream, each new event's `U` should be equal to the previous event's `u`+1.
+            if let u = streamPacksBuffer.last?.u, u+1 == sp.U {
+                // 8. If the quantity is 0, **remove** the price level.
+                sp.a = sp.a.filter { BANumber($0[1]) != 0 }
+                sp.b = sp.b.filter { BANumber($0[1]) != 0 }
+                
+                append(sp)
+            } else {
+                // should restart?
+                restart()
+                return
+            }
+        }
         
-        sp.a = sp.a.filter { BANumber($0[1]) != 0 }
-        sp.b = sp.b.filter { BANumber($0[1]) != 0 }
-        
-        print("Received StreamPack:", sp)
-        
-        
+//        print("Received StreamPack:", sp)
+        print("id: \(lastUpdateId) U:\(sp.U) u:\(sp.u)")
     }
+    
+    
     
 }
