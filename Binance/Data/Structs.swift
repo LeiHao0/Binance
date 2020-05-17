@@ -20,11 +20,14 @@ enum OrderType {
 
 typealias BANumber = Double
 
+struct BAOrder {
+    var price, quantity: BANumber
+}
 
 struct OrderBook: Identifiable {
     var id: Int
-    var ask: (BANumber, BANumber) // (Price, Quantity)
-    var bid: (BANumber, BANumber)
+    var ask: BAOrder
+    var bid: BAOrder
 }
 
 struct StreamPack: Codable {
@@ -38,11 +41,11 @@ struct StreamPack: Codable {
 
 /// ---
 
-func mockOrder(_ id: Int, ask: (BANumber, BANumber)? = nil, bid: (BANumber, BANumber)? = nil) -> OrderBook {
+func mockOrder(_ id: Int, ask: BAOrder? = nil, bid: BAOrder? = nil) -> OrderBook {
     OrderBook(
         id: id,
-        ask: ask ?? (BANumber.random(in: 0.1..<3), BANumber.random(in: 9000..<9999)),
-        bid: bid ?? (BANumber.random(in: 0.1..<3), BANumber.random(in: 9000..<9999)))
+        ask: ask ?? BAOrder(price: BANumber.random(in: 0.1..<3), quantity: BANumber.random(in: 9000..<9999)),
+        bid: bid ?? BAOrder(price: BANumber.random(in: 0.1..<3), quantity: BANumber.random(in: 9000..<9999)))
 }
 
 

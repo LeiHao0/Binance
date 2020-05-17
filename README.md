@@ -35,3 +35,23 @@
 - [x] 7. The data in each event is the **absolute** quantity for a price level.
 - [x] 8. If the quantity is 0, **remove** the price level.
 - [x] 9. Receiving an event that removes a price level that is not in your local order book can happen and is normal.
+
+### Event
+
+```json
+{
+  "e": "depthUpdate",
+  "E": 1589731290381,
+  "s": "BNBBTC",
+  "U": 671210509,
+  "u": 671210540,
+  "b": [
+    ["0.00167450", "6.42000000"],
+    ["0.00167400", "1.45000000"]
+  ],
+  "a": [
+    ["0.00167520", "3.58000000"],
+    ["0.00167530", "22.14000000"]
+  ]
+}
+```

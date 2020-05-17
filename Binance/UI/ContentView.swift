@@ -37,7 +37,7 @@ struct ContentView: View {
                 }
             }
             .frame(height: 10.0)
-            OrderBookView()
+            OrderBookView().environmentObject(orderBooksPublisher)
         }
     }
 }

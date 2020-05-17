@@ -12,11 +12,37 @@ import SwiftyJSON
 import Alamofire
 
 
-let bbType = BBType.bnbbtc
+let orderBooksPublisher = OrderBooksPublisher()
+class OrderBooksPublisher: ObservableObject {
+    @Published var orderBooks = [OrderBook]()
+}
 
 class StreamManager {
     public static let shared = StreamManager()
+    public func start() {
+        AF.request(depthSnapshot, method: .get).validate().responseJSON { [weak self] response in
+            switch response.result {
+            case .success(let value):
+                if let id = JSON(value)["lastUpdateId"].int, let self = self {
+                    self.lastUpdateId = id
+                    self.socket.connect()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    public func stop() {
+        socket.disconnect()
+        clearBuffer()
+        isFirstEvent = true
+    }
+    public func restart() {
+        stop()
+        start()
+    }
     
+    private static let bbType = BBType.bnbbtc
     private let socket: WebSocket
     private let streamWss = "wss://stream.binance.com:9443/ws/\(bbType.rawValue)@depth"
     private let depthSnapshot = "https://www.binance.com/api/v1/depth?symbol=\(bbType.rawValue.uppercased())&limit=1000"
@@ -31,31 +57,9 @@ class StreamManager {
     }
     
     private var isFirstEvent = true
-    public func start() {
-        AF.request(depthSnapshot, method: .get).validate().responseJSON { [weak self] response in
-            switch response.result {
-            case .success(let value):
-                if let id = JSON(value)["lastUpdateId"].int, let self = self {
-                    self.lastUpdateId = id
-                    self.socket.connect()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
     
-    public func stop() {
-        socket.disconnect()
-        clearBuffer()
-        isFirstEvent = true
-    }
     
-    public func restart() {
-        stop()
-        start()
-    }
-    
+    /// StreamPacksBuffer
     
     private let streamPacksBufferSize = 3
     private var streamPacksBuffer = [StreamPack]()
@@ -67,8 +71,11 @@ class StreamManager {
             streamPacksBuffer.remove(at: 0)
         }
         streamPacksBuffer.append(sp)
+
+        DispatchQueue.main.async {
+            orderBooksPublisher.orderBooks = (0..<30).map { mockOrder($0) }
+        }
     }
-    
 }
 
 extension StreamManager: WebSocketDelegate {
@@ -145,7 +152,5 @@ extension StreamManager: WebSocketDelegate {
 //        print("Received StreamPack:", sp)
         print("id: \(lastUpdateId) U:\(sp.U) u:\(sp.u)")
     }
-    
-    
     
 }
