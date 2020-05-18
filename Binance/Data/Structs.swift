@@ -9,7 +9,6 @@
 import Foundation
 import SwiftyJSON
 
-
 enum BBType: String {
     case btcusdt, bnbbtc
 }
@@ -44,8 +43,7 @@ struct StreamPack: Codable {
 func mockOrder(_ id: Int, ask: BAOrder? = nil, bid: BAOrder? = nil) -> OrderBook {
     OrderBook(
         id: id,
-        ask: ask ?? BAOrder(price: BANumber.random(in: 0.1..<3), quantity: BANumber.random(in: 9000..<9999)),
-        bid: bid ?? BAOrder(price: BANumber.random(in: 0.1..<3), quantity: BANumber.random(in: 9000..<9999)))
+        ask: ask ?? BAOrder(price: BANumber.random(in: 0.1 ..< 3), quantity: BANumber.random(in: 9000 ..< 9999)),
+        bid: bid ?? BAOrder(price: BANumber.random(in: 0.1 ..< 3), quantity: BANumber.random(in: 9000 ..< 9999))
+    )
 }
-
-

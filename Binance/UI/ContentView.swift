@@ -9,9 +9,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @State private var favoriteColor = 0
-    
+
     var body: some View {
         VStack {
             Picker(selection: $favoriteColor, label: Text("What is your favorite color?")) {

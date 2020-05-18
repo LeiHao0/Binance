@@ -12,22 +12,22 @@ struct OrderBookCellView: View {
     var bid: BAOrder
     var ask: BAOrder
     let maxNum: BANumber = 20000.0
-    
+
     var body: some View {
         HStack(spacing: 2) {
             ZStack {
-                OrderBookBgColor(type: .bid, percentage: CGFloat(bid.price*bid.quantity/maxNum) )
+                OrderBookBgColor(type: .bid, percentage: CGFloat(bid.price * bid.quantity / maxNum))
                 HStack(spacing: 0) {
                     OrderBookCellText(text: bid.price.toQuantity)
                     Spacer()
-                        OrderBookCellText(text: bid.quantity.toPrice)
+                    OrderBookCellText(text: bid.quantity.toPrice)
                         .foregroundColor(Color.green)
                     Spacer().frame(width: 2)
                 }
             }.clipped()
             ZStack {
-                OrderBookBgColor(type: .ask, percentage: CGFloat(ask.price*ask.quantity/maxNum))
-                HStack(spacing: 0)  {
+                OrderBookBgColor(type: .ask, percentage: CGFloat(ask.price * ask.quantity / maxNum))
+                HStack(spacing: 0) {
                     Spacer().frame(width: 2)
                     OrderBookCellText(text: ask.quantity.toPrice)
                         .foregroundColor(Color.red)
@@ -38,8 +38,6 @@ struct OrderBookCellView: View {
         }
     }
 }
-
-
 
 struct OrderBookCellView_Previews: PreviewProvider {
     static var previews: some View {

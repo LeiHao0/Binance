@@ -13,12 +13,12 @@ struct OrderBookView: View {
     init() {
         UITableView.appearance().tableFooterView = UIView()
         UITableView.appearance().separatorStyle = .none
-        
+
         StreamManager.shared.start()
     }
-    
+
     @EnvironmentObject var orderBooksPublisher: OrderBooksPublisher
-    
+
     var body: some View {
         List(orderBooksPublisher.orderBooks) { v in
             OrderBookCellView(bid: v.bid, ask: v.ask)
@@ -27,7 +27,6 @@ struct OrderBookView: View {
         .environment(\.defaultMinListRowHeight, 30)
     }
 }
-
 
 struct OrderBookView_Previews: PreviewProvider {
     static var previews: some View {

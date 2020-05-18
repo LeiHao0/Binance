@@ -17,7 +17,7 @@ extension BANumber {
         let s = formatter.string(from: NSNumber(value: self))
         return s ?? ""
     }
-    
+
     var toQuantity: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -30,8 +30,8 @@ extension BANumber {
 
 func print(_ items: Any...) {
     #if DEBUG
-    items.forEach {
-        Swift.print($0, separator: " ", terminator: "\n")
-    }
+        items.forEach {
+            Swift.print($0, separator: " ", terminator: "\n")
+        }
     #endif
 }

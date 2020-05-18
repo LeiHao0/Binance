@@ -15,10 +15,10 @@ struct OrderBookBgColor: View {
             percentage = percentage > 1 ? 1 : percentage
         }
     }
-    
+
     var body: some View {
         GeometryReader { metrics in
-            HStack() {
+            HStack {
                 if self.type == .bid {
                     Spacer()
                     Color("BgGreen").frame(width: metrics.size.width * self.percentage)
@@ -26,7 +26,7 @@ struct OrderBookBgColor: View {
                     Color("BgRed").frame(width: metrics.size.width * self.percentage)
                     Spacer()
                 }
-            }.clipped() 
+            }.clipped()
         }
     }
 }
