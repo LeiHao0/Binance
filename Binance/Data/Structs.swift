@@ -21,6 +21,15 @@ typealias BANumber = Double
 
 struct BAOrder {
     var price, quantity: BANumber
+    init(_ price: String, _ quantity: String) {
+        self.price = BANumber(price) ?? 0
+        self.quantity = BANumber(quantity) ?? 0
+    }
+
+    init(_ price: BANumber, _ quantity: BANumber) {
+        self.price = price
+        self.quantity = quantity
+    }
 }
 
 struct OrderBook: Identifiable {
@@ -43,7 +52,7 @@ struct StreamPack: Codable {
 func mockOrder(_ id: Int, ask: BAOrder? = nil, bid: BAOrder? = nil) -> OrderBook {
     OrderBook(
         id: id,
-        ask: ask ?? BAOrder(price: BANumber.random(in: 0.1 ..< 3), quantity: BANumber.random(in: 9000 ..< 9999)),
-        bid: bid ?? BAOrder(price: BANumber.random(in: 0.1 ..< 3), quantity: BANumber.random(in: 9000 ..< 9999))
+        ask: ask ?? BAOrder(BANumber.random(in: 0.1 ..< 3), BANumber.random(in: 9000 ..< 9999)),
+        bid: bid ?? BAOrder(BANumber.random(in: 0.1 ..< 3), BANumber.random(in: 9000 ..< 9999))
     )
 }

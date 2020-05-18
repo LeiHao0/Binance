@@ -23,7 +23,9 @@ struct OrderBookView: View {
         List(orderBooksPublisher.orderBooks) { v in
             OrderBookCellView(bid: v.bid, ask: v.ask)
                 .padding(.vertical, -6)
+                .animation(nil)
         }
+        .animation(nil)
         .environment(\.defaultMinListRowHeight, 30)
     }
 }

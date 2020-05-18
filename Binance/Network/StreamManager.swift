@@ -43,6 +43,8 @@ class StreamManager {
 
     private var retryTimes = 0
 
+    private var shouldBroadcast = false
+
     private let queue = DispatchQueue(label: "io.leihao.Binance")
 
     private init() {
@@ -94,9 +96,39 @@ class StreamManager {
         // 5. The first processed event should have `U` <= `lastUpdateId`+1 **AND** `u` >= `lastUpdateId`+1.
         if let sp = streamPacksBuffer.first, sp.U < lastUpdateId, lastUpdateId < sp.u {
             streamPacksBuffer.append(sp)
+            shouldBroadcast = true
         } else {
             print("Received StreamPack: buffer is empty or lastUpdateId:\(lastUpdateId) not in range U...u, retry getLastUpdateId")
             getLastUpdateId()
+        }
+    }
+
+    private func broadcastOrderBooks() {
+        if shouldBroadcast {
+            let ab = streamPacksBuffer.reduce(([BAOrder](), [BAOrder]())) {
+                ($0.0 + $1.a.map { BAOrder($0[0], $0[1]) },
+                 $0.1 + $1.b.map { BAOrder($0[0], $0[1]) })
+            }
+
+            var orderBooks = [OrderBook]()
+            var i = 0, j = 0
+            while i < ab.0.count, j < ab.1.count {
+                orderBooks.append(OrderBook(id: i, ask: ab.0[i], bid: ab.1[j]))
+                i += 1; j += 1
+            }
+            while i < ab.0.count {
+                orderBooks.append(OrderBook(id: i, ask: ab.0[i], bid: BAOrder(0, 0)))
+                i += 1
+            }
+            while j < ab.1.count {
+                orderBooks.append(OrderBook(id: i, ask: BAOrder(0, 0), bid: ab.1[j]))
+                j += 1
+            }
+
+//            let ob = (0 ..< 30).map { mockOrder($0) }
+            DispatchQueue.main.async {
+                orderBooksPublisher.orderBooks = orderBooks
+            }
         }
     }
 
@@ -106,9 +138,7 @@ class StreamManager {
         }
         streamPacksBuffer.append(sp)
 
-        DispatchQueue.main.async {
-            orderBooksPublisher.orderBooks = (0 ..< 30).map { mockOrder($0) }
-        }
+        broadcastOrderBooks()
     }
 }
 
