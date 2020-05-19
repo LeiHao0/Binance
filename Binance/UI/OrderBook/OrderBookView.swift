@@ -25,6 +25,8 @@ struct OrderBookView: View {
                 .padding(.vertical, -6)
                 .animation(nil)
         }
+//        .id(UUID())
+        // What a kind of fix SwiftUI...
         .animation(nil)
         .environment(\.defaultMinListRowHeight, 30)
     }

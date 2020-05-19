@@ -14,6 +14,8 @@ import SwiftyJSON
 let orderBooksPublisher = OrderBooksPublisher()
 class OrderBooksPublisher: ObservableObject {
     @Published var orderBooks = [OrderBook]()
+    @Published var maxAsk = BANumber(0)
+    @Published var maxBid = BANumber(0)
 }
 
 class StreamManager {
@@ -66,7 +68,7 @@ class StreamManager {
             case let .success(value):
                 guard let id = JSON(value)["lastUpdateId"].int, let self = self else { retry(); return }
                 self.lastUpdateId = id
-                self.queue.asyncAfter(deadline: .now() + Double(self.streamPacksBufferSize) - 1.5) { [weak self] in
+                self.queue.asyncAfter(deadline: .now() + 2.5) { [weak self] in
                     self?.updateStreamPacksBuffer()
                 }
             case let .failure(error):
@@ -110,24 +112,30 @@ class StreamManager {
                  $0.1 + $1.b.map { BAOrder($0[0], $0[1]) })
             }
 
-            var orderBooks = [OrderBook]()
-            var i = 0, j = 0
-            while i < ab.0.count, j < ab.1.count {
-                orderBooks.append(OrderBook(id: i, ask: ab.0[i], bid: ab.1[j]))
-                i += 1; j += 1
-            }
-            while i < ab.0.count {
-                orderBooks.append(OrderBook(id: i, ask: ab.0[i], bid: BAOrder(0, 0)))
-                i += 1
-            }
-            while j < ab.1.count {
-                orderBooks.append(OrderBook(id: i, ask: BAOrder(0, 0), bid: ab.1[j]))
-                j += 1
-            }
+            var maxBid: BANumber = 0, maxAsk: BANumber = 0
+            var orderBooks = (0 ..< 30).map { OrderBook(id: $0, ask: BAOrder(0, 0), bid: BAOrder(0, 0)) }
+            for i in 0 ..< min(30, ab.0.count) { orderBooks[i].ask = ab.0[i]; maxBid = max(maxBid, ab.0[i].price * ab.0[i].quantity) }
+            for i in 0 ..< min(30, ab.1.count) { orderBooks[i].bid = ab.1[i]; maxAsk = max(maxBid, ab.1[i].price * ab.1[i].quantity) }
 
-//            let ob = (0 ..< 30).map { mockOrder($0) }
+//            var orderBooks = [OrderBook]()
+//            var i = 0, j = 0
+//            while i < ab.0.count, j < ab.1.count {
+//                orderBooks.append(OrderBook(id: i, ask: ab.0[i], bid: ab.1[j]))
+//                i += 1; j += 1
+//            }
+//            while i < ab.0.count {
+//                orderBooks.append(OrderBook(id: i, ask: ab.0[i], bid: BAOrder(0, 0)))
+//                i += 1
+//            }
+//            while j < ab.1.count {
+//                orderBooks.append(OrderBook(id: j, ask: BAOrder(0, 0), bid: ab.1[j]))
+//                j += 1
+//            }
+
             DispatchQueue.main.async {
                 orderBooksPublisher.orderBooks = orderBooks
+                orderBooksPublisher.maxAsk = maxAsk
+                orderBooksPublisher.maxBid = maxBid
             }
         }
     }

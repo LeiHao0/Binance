@@ -11,13 +11,12 @@ import SwiftUI
 struct OrderBookCellView: View {
     var bid: BAOrder
     var ask: BAOrder
-    let maxNum: BANumber = 1.0
 
     var body: some View {
         GeometryReader { metrics in
             HStack(spacing: 2) {
-                OrderBookBidCellView(bid: self.bid, maxNum: self.maxNum).frame(width: metrics.size.width / 2)
-                OrderBookAskCellView(ask: self.ask, maxNum: self.maxNum).frame(width: metrics.size.width / 2)
+                OrderBookBidCellView(bid: self.bid).frame(width: metrics.size.width / 2)
+                OrderBookAskCellView(ask: self.ask).frame(width: metrics.size.width / 2)
             }
         }
     }

@@ -19,12 +19,12 @@ struct OrderBookCellText: View {
 
 struct OrderBookBidCellView: View {
     var bid: BAOrder
-    let maxNum: BANumber
+    @EnvironmentObject var orderBooksPublisher: OrderBooksPublisher
 
 //    @ViewBuilder
     var body: some View {
         return ZStack {
-            OrderBookBgColor(type: .bid, percentage: CGFloat(bid.price * bid.quantity / maxNum))
+            OrderBookBgColor(type: .bid, percentage: CGFloat(bid.price * bid.quantity / orderBooksPublisher.maxBid))
             HStack(spacing: 0) {
                 OrderBookCellText(text: bid.price == 0 ? "" : bid.price.toQuantity)
                 Spacer()
@@ -38,10 +38,12 @@ struct OrderBookBidCellView: View {
 
 struct OrderBookAskCellView: View {
     var ask: BAOrder
-    let maxNum: BANumber
+
+    @EnvironmentObject var orderBooksPublisher: OrderBooksPublisher
+
     var body: some View {
         ZStack {
-            OrderBookBgColor(type: .ask, percentage: CGFloat(ask.price * ask.quantity / maxNum))
+            OrderBookBgColor(type: .ask, percentage: CGFloat(ask.price * ask.quantity / orderBooksPublisher.maxAsk))
             HStack(spacing: 0) {
                 Spacer().frame(width: 2)
                 OrderBookCellText(text: ask.quantity == 0 ? "" : ask.quantity.toPrice)
