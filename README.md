@@ -2,7 +2,7 @@
 
 ## Setup
 
-- [ ] Please upload your code to your github, set it as Private and grant the access to “Binance-TechHire”
+- [ ] Please upload your code to your github, set it as Private and grant the access to `Binance-TechHire`
 
 ## Assessed by
 
@@ -15,7 +15,7 @@
 - [ ] SwiftUI
   - [x] Order Book
   - [ ] Market History
-- [ ] Refresh
+- [x] Loading
 - [ ] 1-8 Scales
 - [x] Ping&Pong
 

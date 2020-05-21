@@ -68,7 +68,7 @@ class StreamManager {
             case let .success(value):
                 guard let id = JSON(value)["lastUpdateId"].int, let self = self else { retry(); return }
                 self.lastUpdateId = id
-                self.queue.asyncAfter(deadline: .now() + 2.5) { [weak self] in
+                self.queue.asyncAfter(deadline: .now() + 1.5) { [weak self] in
                     self?.updateStreamPacksBuffer()
                 }
             case let .failure(error):

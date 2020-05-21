@@ -11,7 +11,6 @@
 		6E192324246E93A100D2237C /* OrderBookCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E192323246E93A100D2237C /* OrderBookCellView.swift */; };
 		6E192327246E954D00D2237C /* OrderBookBgColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E192326246E954D00D2237C /* OrderBookBgColor.swift */; };
 		6E192329246EA68E00D2237C /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E192328246EA68E00D2237C /* Structs.swift */; };
-		6E255112246FC63E00AD58A5 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E255111246FC63E00AD58A5 /* Storyboard.storyboard */; };
 		6E255114246FC88600AD58A5 /* OrderBookComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E255113246FC88600AD58A5 /* OrderBookComponents.swift */; };
 		6E4EE330246D9DE8006859BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4EE32F246D9DE8006859BF /* AppDelegate.swift */; };
 		6E4EE332246D9DE8006859BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4EE331246D9DE8006859BF /* SceneDelegate.swift */; };
@@ -31,7 +30,6 @@
 		6E192323246E93A100D2237C /* OrderBookCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookCellView.swift; sourceTree = "<group>"; };
 		6E192326246E954D00D2237C /* OrderBookBgColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookBgColor.swift; sourceTree = "<group>"; };
 		6E192328246EA68E00D2237C /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
-		6E255111246FC63E00AD58A5 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		6E255113246FC88600AD58A5 /* OrderBookComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookComponents.swift; sourceTree = "<group>"; };
 		6E4EE32C246D9DE8006859BF /* Binance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Binance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E4EE32F246D9DE8006859BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				6E4EE33A246D9DEB006859BF /* LaunchScreen.storyboard */,
-				6E255111246FC63E00AD58A5 /* Storyboard.storyboard */,
 				6E4EE333246D9DE8006859BF /* ContentView.swift */,
 				6E192325246E953400D2237C /* OrderBook */,
 			);
@@ -207,7 +204,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E4EE33C246D9DEB006859BF /* LaunchScreen.storyboard in Resources */,
-				6E255112246FC63E00AD58A5 /* Storyboard.storyboard in Resources */,
 				6E4EE339246D9DEB006859BF /* Preview Assets.xcassets in Resources */,
 				6E4EE336246D9DEB006859BF /* Assets.xcassets in Resources */,
 			);

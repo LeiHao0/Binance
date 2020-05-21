@@ -14,15 +14,15 @@ extension BANumber {
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
-        let s = formatter.string(from: NSNumber(value: self))
+        let s = formatter.string(from: NSNumber(value: self*10000))
         return s ?? ""
     }
 
     var toQuantity: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 6
-        formatter.minimumFractionDigits = 6
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
         let s = formatter.string(from: NSNumber(value: self))
         return s ?? ""
     }

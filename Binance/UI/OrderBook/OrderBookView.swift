@@ -13,22 +13,27 @@ struct OrderBookView: View {
     init() {
         UITableView.appearance().tableFooterView = UIView()
         UITableView.appearance().separatorStyle = .none
-
         StreamManager.shared.start()
     }
 
     @EnvironmentObject var orderBooksPublisher: OrderBooksPublisher
 
     var body: some View {
-        List(orderBooksPublisher.orderBooks) { v in
-            OrderBookCellView(bid: v.bid, ask: v.ask)
-                .padding(.vertical, -6)
+        
+        ZStack {
+            List(orderBooksPublisher.orderBooks) { v in
+                OrderBookCellView(bid: v.bid, ask: v.ask)
+                    .padding(.vertical, -6)
+                    .animation(nil)
+            }
+                //        .id(UUID())
+                // What a kind of fix SwiftUI...
                 .animation(nil)
+                .environment(\.defaultMinListRowHeight, 30)
+            if (orderBooksPublisher.orderBooks.isEmpty) {
+                LoadingView()
+            }
         }
-//        .id(UUID())
-        // What a kind of fix SwiftUI...
-        .animation(nil)
-        .environment(\.defaultMinListRowHeight, 30)
     }
 }
 

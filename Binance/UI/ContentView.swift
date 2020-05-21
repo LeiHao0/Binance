@@ -16,7 +16,6 @@ struct ContentView: View {
             Picker(selection: $favoriteColor, label: Text("What is your favorite color?")) {
                 Text("Order Book").tag(0)
                 Text("Market Histroy").tag(1)
-                Text("Info").tag(2)
             }.pickerStyle(SegmentedPickerStyle())
             HStack {
                 HStack {
