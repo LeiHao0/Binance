@@ -1,8 +1,12 @@
 # BinanceAssignment
 
+## Preview
+
+![](/Preview.gif)
+
 ## Setup
 
-- [ ] Please upload your code to your github, set it as Private and grant the access to `Binance-TechHire`
+- [x] Please upload your code to your github, set it as Private and grant the access to `Binance-TechHire`
 
 ## Assessed by
 
